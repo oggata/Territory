@@ -115,14 +115,17 @@ var SysMenu = cc.Layer.extend({
     onNewGame:function (pSender) {
         playSystemButton();
 
-        //ローディング画像を変更
-        var loaderScene = new cc.LoaderScene();
-        loaderScene.init();
-        loaderScene._logoTexture.src = "res/loading.png";
-        loaderScene._logoTexture.width  = 100;
-        loaderScene._logoTexture.height = 100;
-        cc.LoaderScene._instance = loaderScene;
-
+        //3:android 4:iphone 5:ipad 100:mobile_web 101:pc_web
+        var platform = cc.Application.getInstance().getTargetPlatform();
+        if(platform == 100 || platform == 101){
+            //ローディング画像を変更
+            var loaderScene = new cc.LoaderScene();
+            loaderScene.init();
+            loaderScene._logoTexture.src = "res/loading.png";
+            loaderScene._logoTexture.width  = 100;
+            loaderScene._logoTexture.height = 100;
+            cc.LoaderScene._instance = loaderScene;
+        }
 
         cc.LoaderScene.preload(g_chara_select_resources, function () {
             var scene = cc.Scene.create();

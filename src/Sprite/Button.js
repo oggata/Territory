@@ -7,8 +7,11 @@
 //
 
 var ButtonItem = cc.Node.extend({
-    ctor:function (title,w,h,execute,current,tag) {
+    ctor:function (title,w,h,execute,current,pTag) {
         this._super();
+
+        var tag = pTag || 1;
+
 		this.back = cc.Scale9Sprite.create(s_button001_scale9);
 		this.addChild(this.back);
 		this.back.setPosition(0,0);

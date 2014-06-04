@@ -149,8 +149,9 @@ var Colleague = cc.Node.extend({
             if(this.game.strategyCode == 1){
                 //プレイヤーのターゲットがいればそれを追いかける
                 if(this.player.targetEnemy != null){
-                    this.targetEnemy = this.player.targetEnemy;
-                    this.attackTo(this.targetEnemy);
+                    if(this.player.targetEnemy.hp > 0){
+                        this.attackTo(this.player.targetEnemy);
+                    }
                 }else{
                     this.moveTo(this.player);
                 }

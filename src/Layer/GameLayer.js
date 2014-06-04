@@ -209,7 +209,7 @@ var GameLayer = cc.Layer.extend({
                 this.player.targetChip.getPosition().x,
                 this.player.targetChip.getPosition().y
             );
-            this.marker.setScale(this.markerScale,this.markerScale);
+            this.marker.setScale(this.markerScale);
         }else{
             this.marker.setVisible(false);
         }
@@ -227,7 +227,7 @@ var GameLayer = cc.Layer.extend({
                 this.stage.enemyTargetChip.getPosition().x,
                 this.stage.enemyTargetChip.getPosition().y
             );
-            this.enemyMarker.setScale(this.enemyMarkerScale,this.enemyMarkerScale);
+            this.enemyMarker.setScale(this.enemyMarkerScale);
         }else{
             this.enemyMarker.setVisible(false);
         }
@@ -627,9 +627,14 @@ var GameLayer = cc.Layer.extend({
     },
 
     saveData :function(){
-        var toObjString = this.storage.getJson();
-        var toObj = JSON.parse(toObjString);
-        window.localStorage.setItem("gameStorage",JSON.stringify(toObj));
+        //3:android 4:iphone 5:ipad 100:mobile_web 101:pc_web
+        var platform = cc.Application.getInstance().getTargetPlatform();
+        this.storage = new Storage();  
+        if(platform == 100 || platform == 101){
+            var toObjString = this.storage.getJson();
+            var toObj = JSON.parse(toObjString);
+            window.localStorage.setItem("gameStorage",JSON.stringify(toObj));
+        }
     },
 
     isToucheable:function (){
