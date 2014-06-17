@@ -24,7 +24,7 @@
         },
         { 
             "id"             : 1, 
-            "title"          : "1-1.ナワバリ×5を占領",
+            "title"          : "1-1.土地×5の復元",
             "detail"         : "",
             "time_limit"     : 2700,
             "genre"          : "occupy",
@@ -39,7 +39,7 @@
         },
         { 
             "id"             : 2, 
-            "title"          : "1-2:ナワバリ×5を占領",
+            "title"          : "1-2:土地×5を復元",
             "detail"         : "",
             "time_limit"     : 2700,
             "genre"          : "occupy",
@@ -69,7 +69,7 @@
         },
         { 
             "id"             : 4, 
-            "title"          : "2-1:ナワバリ×5を占領",
+            "title"          : "2-1:土地×5を復元",
             "detail"         : "",
             "time_limit"     : 2700,
             "genre"          : "occupy",
@@ -84,7 +84,7 @@
         },
         { 
             "id"             : 5, 
-            "title"          : "2-2:ナワバリ×5を占領",
+            "title"          : "2-2:土地×5を復元",
             "detail"         : "",
             "time_limit"     : 2700,
             "genre"          : "occupy",
