@@ -14,22 +14,14 @@ var StaffRollLayer = cc.Layer.extend({
     },
 
     init:function () {
-
         var bRet = false;
-
         if (this._super()) {
-            
-            //3:android 4:iphone 5:ipad 100:mobile_web 101:pc_web
-            var platform = cc.Application.getInstance().getTargetPlatform();
-            if(platform == 100 || platform == 101){
-                this.changeLoadingImage();
-            }
+            //bgm
+            playSystemBGM();
+            changeLoadingImage();
 
             this.infoTextPosX = 10;
             this.infoTextPosY = -600;
-
-            //bgm
-            playSystemBGM();
 
             var rtn = "";
             rtn += "\n";
@@ -128,7 +120,6 @@ var StaffRollLayer = cc.Layer.extend({
             this.addChild(this.menu);
             this.menu.setPosition(0,0);
 
-
             this.scheduleUpdate();
             this.setTouchEnabled(true);
 
@@ -150,17 +141,6 @@ var StaffRollLayer = cc.Layer.extend({
     onFacebook:function(){
         goFacebook(getZeroPaddingNumber(100,6));
     },
-
-    changeLoadingImage:function(){
-        //ローディング画像を変更
-        var loaderScene = new cc.LoaderScene();
-        loaderScene.init();
-        loaderScene._logoTexture.src    = "res/loading.png";
-        loaderScene._logoTexture.width  = 100;
-        loaderScene._logoTexture.height = 100;
-        cc.LoaderScene._instance = loaderScene;
-    }
-
 });
 
 StaffRollLayer.create = function (storage) {

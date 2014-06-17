@@ -10,18 +10,13 @@ var GameLayer = cc.Layer.extend({
     ctor:function (storage) {
         this._super();
         this.storage  = storage;
+        changeLoadingImage();
     },
 
     init:function () {
         this._super();
         cc.Director.getInstance().setProjection(cc.DIRECTOR_PROJECTION_2D);
 
-        //3:android 4:iphone 5:ipad 100:mobile_web 101:pc_web
-        var platform = cc.Application.getInstance().getTargetPlatform();
-        if(platform == 100 || platform == 101){
-            this.changeLoadingImage();
-        }
-        
         //bgm
         playBGM();
 
@@ -638,17 +633,6 @@ var GameLayer = cc.Layer.extend({
     isToucheable:function (){
         return true;
     },
-
-    changeLoadingImage:function(){
-        //ローディング画像を変更
-        var loaderScene = new cc.LoaderScene();
-        loaderScene.init();
-        loaderScene._logoTexture.src    = "res/loading.png";
-        loaderScene._logoTexture.width  = 100;
-        loaderScene._logoTexture.height = 100;
-        cc.LoaderScene._instance = loaderScene;
-    }
-
 });
 
 GameLayer.create = function (storage) {

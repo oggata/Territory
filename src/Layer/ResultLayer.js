@@ -16,15 +16,10 @@ var ResultLayer = cc.Layer.extend({
     init:function () {
         var bRet = false;
         if (this._super()) {
-
-            //3:android 4:iphone 5:ipad 100:mobile_web 101:pc_web
-            var platform = cc.Application.getInstance().getTargetPlatform();
-            if(platform == 100 || platform == 101){
-                this.changeLoadingImage();
-            }
-
             //bgm
             playSystemBGM();
+            changeLoadingImage();
+
             //back
             var back = cc.Sprite.create(loading_png);
             back.setAnchorPoint(0,0);
@@ -47,7 +42,7 @@ var ResultLayer = cc.Layer.extend({
 
             //結果
             this.resultText = cc.LabelTTF.create(
-                  "占領×" + getZeroPaddingNumber(this.storage.occupiedCnt,6) + "\n"
+                  "復元×" + getZeroPaddingNumber(this.storage.occupiedCnt,6) + "\n"
                 + "キル×" + getZeroPaddingNumber(this.storage.killedEnemyCnt,6) + "\n"
                 + "生産×" + getZeroPaddingNumber(this.storage.productCnt,6) + "\n"
                 + "お金×" + getZeroPaddingNumber(this.storage.coinAmount,6) + "\n"
@@ -140,17 +135,6 @@ var ResultLayer = cc.Layer.extend({
     onFacebook:function(){
         goFacebook(getZeroPaddingNumber(this.storage.gameScore,6));
     },
-
-    changeLoadingImage:function(){
-        //ローディング画像を変更
-        var loaderScene = new cc.LoaderScene();
-        loaderScene.init();
-        loaderScene._logoTexture.src    = "res/loading.png";
-        loaderScene._logoTexture.width  = 100;
-        loaderScene._logoTexture.height = 100;
-        cc.LoaderScene._instance = loaderScene;
-    }
-
 });
 
 ResultLayer.create = function (storage) {

@@ -200,3 +200,17 @@ var onBackCallback = function (pSender) {
     scene.addChild(SysMenu.create());
     cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, scene));
 };
+
+var changeLoadingImage = function(){
+    //3:android 4:iphone 5:ipad 100:mobile_web 101:pc_web
+    var platform = cc.Application.getInstance().getTargetPlatform();
+    if(platform == 100 || platform == 101){ 
+        //ローディング画像を変更
+        var loaderScene = new cc.LoaderScene();
+        loaderScene.init();
+        loaderScene._logoTexture.src    = "res/loading.png";
+        loaderScene._logoTexture.width  = 100;
+        loaderScene._logoTexture.height = 100;
+        cc.LoaderScene._instance = loaderScene;
+    }
+};

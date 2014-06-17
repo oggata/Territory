@@ -17,14 +17,9 @@ var TutolialLayer = cc.Layer.extend({
 
         var bRet = false;
         if (this._super()) {
-
-            //ローディング画像を変更
-            var loaderScene = new cc.LoaderScene();
-            loaderScene.init();
-            loaderScene._logoTexture.src = "res/loading.png";
-            loaderScene._logoTexture.width  = 100;
-            loaderScene._logoTexture.height = 100;
-            cc.LoaderScene._instance = loaderScene;
+            //bgm
+            //playSystemBGM();
+            changeLoadingImage();
 
             //back
             var story = cc.Sprite.create(s_story_001);
@@ -44,9 +39,6 @@ var TutolialLayer = cc.Layer.extend({
             this.nextButton = new ButtonItem("NEXT",200,40,this.onNextStory,this);
             this.nextButton.setPosition(320/2,60);
             this.addChild(this.nextButton);
-
-            //bgm
-            playSystemBGM();
 
             //ホームボタン
             var homeButton = cc.MenuItemImage.create(

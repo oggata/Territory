@@ -10,14 +10,15 @@ cc.dumpConfig();
 
 var SysMenu = cc.Layer.extend({
     init:function () {
-
+        //bgm
+        playSystemBGM();
+        changeLoadingImage();
         var userGameStatus = 1; // 1:新規 2:保存データあり 3:クリア後
 
         //3:android 4:iphone 5:ipad 100:mobile_web 101:pc_web
         var platform = cc.Application.getInstance().getTargetPlatform();
         this.storage = new Storage();  
         if(platform == 100 || platform == 101){
-            this.changeLoadingImage();
             //データのロード
             //var jsonFile = {author:"isaac","description":"fresheggs","rating":100,"saveData":false};
             //window.localStorage.setItem("gameStorage",JSON.stringify(jsonFile));
@@ -38,9 +39,6 @@ var SysMenu = cc.Layer.extend({
                 cc.log("保存されたデータはありません");
             }
         }
-
-        //bgm
-        playSystemBGM();
 
         //back
         var sp = cc.Sprite.create(loading_png);
@@ -120,18 +118,6 @@ var SysMenu = cc.Layer.extend({
     onNewGame:function (pSender) {
         playSystemButton();
 
-        //3:android 4:iphone 5:ipad 100:mobile_web 101:pc_web
-        var platform = cc.Application.getInstance().getTargetPlatform();
-        if(platform == 100 || platform == 101){
-            //ローディング画像を変更
-            var loaderScene = new cc.LoaderScene();
-            loaderScene.init();
-            loaderScene._logoTexture.src = "res/loading.png";
-            loaderScene._logoTexture.width  = 100;
-            loaderScene._logoTexture.height = 100;
-            cc.LoaderScene._instance = loaderScene;
-        }
-
         cc.LoaderScene.preload(g_chara_select_resources, function () {
             var scene = cc.Scene.create();
 
@@ -166,18 +152,6 @@ var SysMenu = cc.Layer.extend({
 
     onTutorial:function (pSender) {
         playSystemButton();
-
-        //3:android 4:iphone 5:ipad 100:mobile_web 101:pc_web
-        var platform = cc.Application.getInstance().getTargetPlatform();
-        if(platform == 100 || platform == 101){
-            //ローディング画像を変更
-            var loaderScene = new cc.LoaderScene();
-            loaderScene.init();
-            loaderScene._logoTexture.src = "res/loading.png";
-            loaderScene._logoTexture.width  = 100;
-            loaderScene._logoTexture.height = 100;
-            cc.LoaderScene._instance = loaderScene;
-        }
 
         cc.LoaderScene.preload(g_chara_select_resources, function () {
             var scene = cc.Scene.create();
@@ -215,16 +189,6 @@ var SysMenu = cc.Layer.extend({
             cc.Director.getInstance().replaceScene(cc.TransitionSlideInR.create(1.2, scene));
         }, this);
     },
-
-    changeLoadingImage:function(){
-        //ローディング画像を変更
-        var loaderScene = new cc.LoaderScene();
-        loaderScene.init();
-        loaderScene._logoTexture.src    = "res/loading.png";
-        loaderScene._logoTexture.width  = 100;
-        loaderScene._logoTexture.height = 100;
-        cc.LoaderScene._instance = loaderScene;
-    }
 
 });
 
