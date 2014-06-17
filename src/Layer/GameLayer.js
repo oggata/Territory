@@ -601,7 +601,6 @@ var GameLayer = cc.Layer.extend({
         }
         this.storage.calcTotal();
         this.saveData();
-
         if(this.storage.stageNumber >= CONFIG.MAX_STAGE_NUMBER){
             //全クリア
             var scene = cc.Scene.create();
@@ -628,8 +627,7 @@ var GameLayer = cc.Layer.extend({
 
     saveData :function(){
         //3:android 4:iphone 5:ipad 100:mobile_web 101:pc_web
-        var platform = cc.Application.getInstance().getTargetPlatform();
-        this.storage = new Storage();  
+        var platform = cc.Application.getInstance().getTargetPlatform(); 
         if(platform == 100 || platform == 101){
             var toObjString = this.storage.getJson();
             var toObj = JSON.parse(toObjString);

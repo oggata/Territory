@@ -60,7 +60,7 @@ var Storage = cc.Class.extend({
         this.createCot        = 0;
 
         //image
-        this.image            = "sprite/chara009.png";
+        this.image            = "sprite/chara001.png";
         this.imgWidth         = 32;
         this.imgHeight        = 194/4;
         this.charactorCode    = 9;
