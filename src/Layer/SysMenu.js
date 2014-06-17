@@ -49,7 +49,12 @@ var SysMenu = cc.Layer.extend({
 
         //new game
         this.newGameButton = new ButtonItem("NEW GAME",200,40,this.onNewGame,this);
-        this.newGameButton.setPosition(160,60);
+        this.newGameButton.setPosition(160,80);
+        this.addChild(this.newGameButton);
+
+        //story & tutorial
+        this.newGameButton = new ButtonItem("TUTORIAL",200,40,this.onTutorial,this);
+        this.newGameButton.setPosition(160,30);
         this.addChild(this.newGameButton);
 
         //load game
@@ -58,7 +63,7 @@ var SysMenu = cc.Layer.extend({
             loadGameTitle = "LOAD GAME (stage:" + Math.floor(this.storage.maxStageNumber) + ")";
         }
         this.loadGameButton = new ButtonItem(loadGameTitle,200,40,this.onLoadGame,this);
-        this.loadGameButton.setPosition(160,110);
+        this.loadGameButton.setPosition(160,130);
         this.addChild(this.loadGameButton);
         if(userGameStatus == 1){
             //保存データがない人はロードボタンを表示させない
@@ -157,6 +162,28 @@ var SysMenu = cc.Layer.extend({
                 cc.Director.getInstance().replaceScene(cc.TransitionSlideInR.create(1.2, scene));
             }, this);
         }
+    },
+
+    onTutorial:function (pSender) {
+        playSystemButton();
+
+        //3:android 4:iphone 5:ipad 100:mobile_web 101:pc_web
+        var platform = cc.Application.getInstance().getTargetPlatform();
+        if(platform == 100 || platform == 101){
+            //ローディング画像を変更
+            var loaderScene = new cc.LoaderScene();
+            loaderScene.init();
+            loaderScene._logoTexture.src = "res/loading.png";
+            loaderScene._logoTexture.width  = 100;
+            loaderScene._logoTexture.height = 100;
+            cc.LoaderScene._instance = loaderScene;
+        }
+
+        cc.LoaderScene.preload(g_chara_select_resources, function () {
+            var scene = cc.Scene.create();
+            scene.addChild(TutolialLayer.create());
+            cc.Director.getInstance().replaceScene(cc.TransitionSlideInR.create(1.2, scene));
+        }, this);
     },
 
     onDebugMode:function (pSender) {

@@ -77,13 +77,16 @@ var s_break              = base_dir + "sprite/break.png";
 
 //bgm
 var s_bgm_001            = base_dir + "res/sound/bgm/bgm_maoudamashii_cyber09.mp3";
-var s_bgm_002            = base_dir + "res/sound/bgm/bgm_maoudamashii_cyber03.mp3";
+var s_bgm_002            = base_dir + "res/sound/bgm/bgm_maoudamashii_piano07.mp3";
 var s_se_dog             = base_dir + "res/sound/se/se_maoudamashii_magical01.mp3";
 var s_se_occupied        = base_dir + "res/sound/se/se_maoudamashii_onepoint17.mp3";
 var s_se_enemyOccupied   = base_dir + "res/sound/se/se_maoudamashii_onepoint29.mp3";
 var s_se_coin            = base_dir + "res/sound/se/se_maoudamashii_system47.mp3";
 var s_se_attack          = base_dir + "res/sound/se/se_maoudamashii_battle01.mp3";
 var s_se_system          = base_dir + "res/sound/se/se_maoudamashii_system23.mp3";
+
+//story
+var s_story_001          = base_dir + "story/001.png";
 
 var g_system_resources   = [
     enemy_json,

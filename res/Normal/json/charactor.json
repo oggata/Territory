@@ -17,7 +17,7 @@
             "eye_sight"    : 100,
             "walk_speed"   : 3,
             "image"        : "sprite/chara001.png",
-            "image_width"  : 40,
+            "image_width"  : 33.3,
             "image_height" : 46.75
         },
         {
@@ -30,7 +30,7 @@
             "eye_sight"    : 100,
             "walk_speed"   : 3,
             "image"        : "sprite/chara001.png",
-            "image_width"  : 40,
+            "image_width"  : 33.3,
             "image_height" : 46.75
         },
         {
@@ -43,8 +43,8 @@
             "eye_sight"    : 100,
             "walk_speed"   : 3,
             "image"        : "sprite/chara002.png",
-            "image_width"  : 40,
-            "image_height" : 50
+            "image_width"  : 33.3,
+            "image_height" : 46.75
         },
         {
             "id"           : 3,
