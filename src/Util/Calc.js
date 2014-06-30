@@ -6,6 +6,31 @@
 //  Copyright (c) 2014 http://oggata.github.io All rights reserved.
 //
 
+var getEnemyDepPos = function(){
+    var depX = 0;
+    var depY = 0;
+    var depCode = getRandNumberFromRange(1,4);
+    if(depCode == 1){
+        //左上
+        depX = 500;
+        depY = 390;
+    }else if(depCode == 2){
+        //右上
+        depX = 1100;
+        depY = 390;
+    }else if(depCode == 3){
+        //右下
+        depX = 1100;
+        depY = 50;
+    }else if(depCode == 4){
+        //左下
+        depX = 500;
+        depY = 50;
+    }
+    return [depX,depY];
+};
+
+
 var getDistance = function(x1,y1,x2,y2){
     var dirX = x1 - x2;
     var dirY = y1 - y2;

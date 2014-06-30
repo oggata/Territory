@@ -16,7 +16,7 @@ var Coin = cc.Node.extend({
         }
         this.wa = cc.Animation.create(frameSeq,0.1);
         this.ra = cc.RepeatForever.create(cc.Animate.create(this.wa));
-        this.coinSprite = cc.Sprite.create(s_coin,cc.rect(0,0,40,40));
+        this.coinSprite = cc.Sprite.create(s_enargy,cc.rect(0,0,40,40));
         this.coinSprite.runAction(this.ra);
         this.addChild(this.coinSprite);
 

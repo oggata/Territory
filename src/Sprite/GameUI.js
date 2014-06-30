@@ -210,7 +210,7 @@ var GameUI = cc.Node.extend({
         this.wa = cc.Animation.create(frameSeq,0.1);
         this.raBreak = cc.RepeatForever.create(cc.Animate.create(this.wa));
         //this.raBreak = cc.Repeat.create(cc.Animate.create(this.wa),1);
-        this.breakSprite = cc.Sprite.create(s_coin,cc.rect(0,0,48,96));
+        this.breakSprite = cc.Sprite.create(s_enargy,cc.rect(0,0,48,96));
         this.breakSprite.setPosition(50,60);
         this.breakSprite.runAction(this.raBreak);
         this.addChild(this.breakSprite);

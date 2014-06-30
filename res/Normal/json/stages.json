@@ -32,9 +32,9 @@
             "map"            : {"image":"sprite/ghost.png","w":32,"h":48,"x":5,"y":5},
             "reward"         : {"coin":100,"exp":100},
             "item_coin"      : 0,
-            "enemy_code"     : 0,
-            "init_enemy_cnt" : 0,      
-            "enemy_interval" : 170,
+            "enemy_code"     : 9,
+            "init_enemy_cnt" : 1,      
+            "enemy_interval" : 200,
             "items"          : [{"type":"levelup","count":1},{"type":"bomb","count":1}]
         },
         { 

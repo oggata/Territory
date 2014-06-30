@@ -249,12 +249,6 @@ var collisionPlayerAndEnemy = function(player,enemies){
             player.targetEnemy = enemy;
         }
 
-        //敵が追いかけてくる
-        enemy.walkStatus = "normal";
-        if(distance < enemy.eyeSight){
-            enemy.walkStatus = "chase";
-        } 
-
         //プレイヤ->敵 (ダメージ)
         if(distance < player.eyeSightRange){
             player.battleInterval++;
@@ -321,6 +315,28 @@ var collisionPlayerAndEnemy = function(player,enemies){
             }
         } 
     }
+};
+
+
+//this.enemyBodies
+//プレイヤーと敵の衝突判定
+var collisionPlayerAndEnemyBody = function(player,enemyBodies){
+/*
+    for(var i=0;i<enemyBodies.length;i++){
+        var enemyBody = enemyBodies[i];
+        var distance = cc.pDistance(player.getPosition(),enemyBody.getPosition());
+        //敵->プレイヤー(ダメージ)
+        if(enemyBody[i].type == "normal"){
+            if(distance < 50){
+                enemyBody[i].battleIntervalToPlayer++;
+                if(enemyBody[i].battleIntervalToPlayer >= 30){
+                    enemyBody[i].battleIntervalToPlayer = 0;
+                    player.damage(enemyBody[i].attack);
+                }
+            }
+        }
+    }
+*/
 };
 
 //敵同士の衝突判定

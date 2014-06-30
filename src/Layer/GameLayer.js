@@ -1,5 +1,5 @@
 //
-//  CharaSelectLayer.js
+//  GameLayer.js
 //  Territory
 //
 //  Created by Fumitoshi Ogata on 5/30/14.
@@ -28,6 +28,10 @@ var GameLayer = cc.Layer.extend({
         this.setParams();
         this.setScrollView();
         this.stage = new Stage(this);
+
+        this.stageRollingCube = new Cube3(1);
+        this.mapNode.addChild(this.stageRollingCube);
+        this.stageRollingCube.setPosition(800,220);
 
         //set player
         this.player = new Player(this);
@@ -142,7 +146,6 @@ var GameLayer = cc.Layer.extend({
         this.missionLabel    = this.storage.missionTitle;
         this.missionCnt      = 0;
         this.missionMaxCnt   = this.storage.missionMaxCnt;
-
         this.timeCnt         = 0;
         this.missionTimeLimit= this.storage.missionTimeLimit;
     },
@@ -190,6 +193,8 @@ var GameLayer = cc.Layer.extend({
         if(this.isMissionVisible == true) return;
 
         this.stage.update();
+
+        this.stageRollingCube.update();
 
         //プレイヤー占領中のマーカーを表示する
         if(this.player.targetChip != null && this.player.targetChip.isOccupied == false){
@@ -245,11 +250,13 @@ var GameLayer = cc.Layer.extend({
         }
 
         //時間経過による敵の作成
-        this.enemySetTime++;
-        var interval = this.storage.enemySetInterval;
-        if(this.enemySetTime >= interval){
-            this.enemySetTime = 0;
-            this.addEnemy(this.storage.enemyCode);
+        if(this.enemies.length <= 10){
+            this.enemySetTime++;
+            var interval = this.storage.enemySetInterval;
+            if(this.enemySetTime >= interval){
+                this.enemySetTime = 0;
+                this.addEnemy(this.storage.enemyCode);
+            }
         }
 
         //UI
@@ -329,7 +336,7 @@ var GameLayer = cc.Layer.extend({
             }
         }
 
-        //bullets
+        //enemy bullets
         for(var i=0;i<this.enemyBullets.length;i++){
             if(this.enemyBullets[i].update() == false){
                 this.mapNode.removeChild(this.enemyBullets[i]);
@@ -485,39 +492,20 @@ var GameLayer = cc.Layer.extend({
     },
 
     addEnemy : function(code){
-        this.enemy = new Enemy(this,code);
-        this.mapNode.addChild(this.enemy);
         //set room number
         var walkingRoute = Array();
-        var depX = 0;var depY = 0;
-
         //左上 515 390 右上 1101  375 右下 1085 56 左下  468 40 真ん中 800 220
-        var depX = 0;
-        var depY = 0;
-        var depCode = getRandNumberFromRange(1,4);
-        if(depCode == 1){
-            //左上
-            depX = 500;
-            depY = 390;
-        }else if(depCode == 2){
-            //右上
-            depX = 1100;
-            depY = 390;
-        }else if(depCode == 3){
-            //右下
-            depX = 1100;
-            depY = 50;
-        }else if(depCode == 4){
-            //左下
-            depX = 500;
-            depY = 50;
-        }
+        var enemyDep = getEnemyDepPos();
+        var depX = enemyDep[0];
+        var depY = enemyDep[1];
+        var rCubePos = this.stageRollingCube.getMapPosition();
+        this.enemy = new Enemy(this,code,depX,depY);
+        this.mapNode.addChild(this.enemy);
         this.enemy.setPosition(depX,depY);
         this.enemies.push(this.enemy);
     },
 
 //デバイス入力----->
-
     onTouchesBegan:function (touches, event) {
         if(this.isToucheable() == false) return;
         this.touched = touches[0].getLocation();
@@ -540,8 +528,7 @@ var GameLayer = cc.Layer.extend({
     onTouchesCancelled:function (touches, event) {
     },
 
-//アイテムの使用関数----->
-
+    //アイテムの使用関数----->
     setTerritoryCnt:function(){
         var cnt    = this.stage.getTerritoryCnt();
         var maxCnt = this.stage.getMaxTerritoryCnt();
@@ -583,11 +570,9 @@ var GameLayer = cc.Layer.extend({
     },
 
     setBornCostDecrease : function(){
-
     },
 
 //シーンの切り替え----->
-
     goResultLayer:function (pSender) {
         //ステージを追加
         this.storage.stageNumber++;

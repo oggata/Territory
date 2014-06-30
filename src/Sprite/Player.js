@@ -41,6 +41,9 @@ var Player = cc.Node.extend({
         this.isDamaged         = false;
         this.isStop            = false;
 
+this.depX = 0;
+this.depY = 0;
+
         //HPゲージ
         this.gauge             = new Gauge(30,4,'blue');
         this.gauge.setPosition(-20,20);
@@ -49,10 +52,19 @@ var Player = cc.Node.extend({
         //AttackCube
         this.cubes = new Array();
         for (var i=0 ; i < 18 ; i++){
-            this.cube = new Cube(i);
+            this.cube = new Cube(i,60,60);
             this.cubes.push(this.cube);
             this.addChild(this.cube,999);
         }
+
+//軌跡（ヘビ型)
+this.trackSnakeInterval = 0;
+this.trackSnakes = [];
+for(var i=0;i<5;i++){
+    var track = new Track(i,this,this.game);
+    this.game.mapNode.addChild(track);
+    this.trackSnakes.push(track);
+}
 
         //initialize Animation
         this.initializeWalkAnimation();
@@ -62,6 +74,26 @@ var Player = cc.Node.extend({
     },
 
     update:function() {
+
+
+//自身が通った座標の履歴
+this.trackSnakeInterval++;
+if(this.trackSnakeInterval >= 20){
+    this.trackSnakeInterval=0;
+    //add
+    var track = new Track(1,this,this.game);
+    this.game.mapNode.addChild(track);
+    track.setPosition(
+        this.getPosition().x,
+        this.getPosition().y
+    );
+    this.trackSnakes.push(track);
+    //remove
+    this.game.mapNode.removeChild(this.trackSnakes[0]);
+    this.trackSnakes.splice(0,1);
+}
+
+
         this.gauge.update(this.hp/this.maxHp);
 
         //update eye sight range

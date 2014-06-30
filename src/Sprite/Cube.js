@@ -7,9 +7,14 @@
 //
 
 var Cube = cc.Node.extend({
-    ctor:function (num) {
+    ctor:function (num,rangeMin,rangeMax) {
         this._super();
-        this.eyeSightRange = 60;
+
+        this.rangeMin = rangeMin;
+        this.rangeMax = rangeMax;
+        this.frowaringDirection = 1;
+
+        this.eyeSightRange = rangeMin;
         if(CONFIG.DEBUG_FLAG == 1){
             this.alpha = 255 * 1;
         }else{
@@ -25,6 +30,17 @@ var Cube = cc.Node.extend({
     },
 
     update:function() {
+
+        if(this.rangeMin != this.rangeMax){
+            this.eyeSightRange += 1 * this.frowaringDirection;
+            if(this.eyeSightRange > this.rangeMax){
+                this.frowaringDirection = -1;
+            }
+            if(this.eyeSightRange < this.rangeMin){
+                this.frowaringDirection = 1;
+            }
+        }
+
         //update rolling cube
         this.cubeAngle+=2;
         if(this.cubeAngle>=360){

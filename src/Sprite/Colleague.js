@@ -70,7 +70,7 @@ var Colleague = cc.Node.extend({
         var wa = cc.Animation.create(frameSeq,0.1);
         this.energyRep = cc.Repeat.create(cc.Animate.create(wa),1);
         this.energyRep.retain();
-        this.energySprite = cc.Sprite.create(s_coin,cc.rect(0,0,48,96));
+        this.energySprite = cc.Sprite.create(s_enargy,cc.rect(0,0,48,96));
         this.energySprite.retain();
         this.energySprite.setPosition(0,20);
         this.energySprite.runAction(this.energyRep);

@@ -60,7 +60,6 @@ var s_damage_002         = base_dir + "text/damage002.png";
 
 //sprite
 var s_initSprite         = base_dir + "sprite/initSprite.png";
-var s_coin               = base_dir + "sprite/coin.png";
 var s_enargy             = base_dir + "sprite/enargy.png";
 
 var s_shadow             = base_dir + "sprite/shadow.png";
@@ -71,6 +70,14 @@ var s_chara004           = base_dir + "sprite/chara004.png";
 
 var s_enemy_devil        = base_dir + "sprite/devil_001.png";
 var s_enemy_devil_boss   = base_dir + "sprite/devil_002.png";
+var s_enemy_snake_body   = base_dir + "sprite/snake_body.png";
+var s_enemy_snake_head   = base_dir + "sprite/snake_head.png";
+var s_enemy_snake_body_m = base_dir + "sprite/snake_body_M.png";
+var s_enemy_snake_head_m = base_dir + "sprite/snake_head_M.png";
+var s_enemy_chameleon    = base_dir + "sprite/chameleon_blue.png";
+var s_enemy_chameleon_m  = base_dir + "sprite/chameleon_blue_m.png";
+
+
 
 var s_attack_rolling     = base_dir + "sprite/attack_rolling.png";
 var s_break              = base_dir + "sprite/break.png";
@@ -125,6 +132,12 @@ var g_resources       = [
     s_mission_start,
     s_enemy_devil,
     s_enemy_devil_boss,
+    s_enemy_snake_body,
+    s_enemy_snake_head,
+    s_enemy_snake_body_m,
+    s_enemy_snake_head_m,
+    s_enemy_chameleon,
+    s_enemy_chameleon_m,
     s_target,
     loading_png,
     effect_water,
