@@ -1,3 +1,9 @@
+# Territory
+
+This is Sample Game Project in Cocos2d-html5.
+
+## Usage
+
 ### Download modules from github ###
     git clone git@github.com:oggata/Territory.git
 
@@ -7,7 +13,7 @@
 ### run game ###
     http://localhost:8000
 
-### 使用素材 ###
+## Materials
 
 	ひみつ(Urochi)
 	http://uros.web.fc2.com
@@ -23,3 +29,19 @@
 
 	ゆんフリー写真素材集
 	http://www.yunphoto.net
+
+## ToDo's
+
+- add more stages.
+- add enemy motion.
+- Suggestions, issues and pull requests are more than welcome.
+
+## Contact
+
+Fumitoshi Ogata
+- [twitter.com/oggata](http://twitter.com/oggata)
+- oggata@gmail.com
+
+## License
+Territory is available under the MIT license. 
+See the LICENSE file for more info.
