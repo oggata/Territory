@@ -1,15 +1,17 @@
 /*
 
 MISSION TYPE ------->
+ミッションのクリア条件
 
 DESTROY   ..全滅
 OCCUPY    ..占領
 SURVIVAL  ..生き残る
 BORN      ..生産
 COLLECTOR ..収集
-DEFENCE   ..警護
+DEFENCE   ..護衛
 
 ENEMY TYPE ------->
+敵の動きパターン
 
 NORMAL
 SNAKE
@@ -18,14 +20,17 @@ COCKROACH
 ANT_LION
 
 ENEMY BULLET ----->
+敵の攻撃の種類
 
 FIRE
+WATER
 SANDER
 POISON
 
 CARD ------------->
+所持しているアイテムカードの種類
 
-LEVEL UP
+POWER UP
 STOP TIME (10sec)
 ENERGY
 ATTACK ENEMY
@@ -35,6 +40,7 @@ ATTACK  UP
 OCCUPY  UP
 HP      RECOVER
 POISON  RECOVER
+
 */
 
 var CONFIG = CONFIG || {};

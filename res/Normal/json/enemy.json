@@ -144,7 +144,7 @@
             "defence"      : 10,
             "eye_sight"    : 30,
             "walk_speed"   : 0.8,
-            "type"         : "jellyfish",
+            "type"         : "snake",
             "track_num"    : 30,
             "bullet"       : "none",
             "image"        : "sprite/snake_head_M.png",
@@ -153,6 +153,22 @@
         },
         {
             "id"           : 9,
+            "name"         : "くらげ",
+            "detail"       : "", 
+            "hp"           : 9999,
+            "attack"       : 5,
+            "defence"      : 10,
+            "eye_sight"    : 30,
+            "walk_speed"   : 0.8,
+            "type"         : "jellyfish",
+            "track_num"    : 30,
+            "bullet"       : "none",
+            "image"        : "sprite/snake_head_M.png",
+            "image_width"  : 111,
+            "image_height" : 78
+        },
+        {
+            "id"           : 10,
             "name"         : "カメレオン",
             "detail"       : "", 
             "hp"           : 9999,
@@ -160,7 +176,7 @@
             "defence"      : 10,
             "eye_sight"    : 30,
             "walk_speed"   : 0.8,
-            "type"         : "normal",
+            "type"         : "cockroach",
             "track_num"    : 0,
             "bullet"       : "none",
             "image"        : "sprite/chameleon_blue.png",
@@ -168,7 +184,7 @@
             "image_height" : 109
         },
         {
-            "id"           : 10,
+            "id"           : 11,
             "name"         : "カメレオンBIG",
             "detail"       : "", 
             "hp"           : 9999,
@@ -184,7 +200,7 @@
             "image_height" : 179
         },
         {
-            "id"           : 11,
+            "id"           : 12,
             "name"         : "アリジゴク",
             "detail"       : "", 
             "hp"           : 9999,
