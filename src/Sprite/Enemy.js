@@ -121,6 +121,13 @@ var Enemy = cc.Node.extend({
         }
     },
 
+    removeBodies:function(){
+        for(var i=0;i<this.enemyBodies.length;i++){
+            this.game.mapNode.removeChild(this.enemyBodies[i]);
+            this.enemyBodies.splice(i,1);
+        }
+    },
+
     update:function() {
         //body
         for(var i=0;i<this.enemyBodies.length;i++){

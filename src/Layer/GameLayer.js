@@ -139,6 +139,7 @@ var GameLayer = cc.Layer.extend({
         this.coins           = [];
         this.bullets         = [];
         this.enemyBullets    = [];
+        this.colleagueBullets= [];
         this.enemies         = [];
         this.colleagues      = [];
         //mission
@@ -148,6 +149,12 @@ var GameLayer = cc.Layer.extend({
         this.missionMaxCnt   = this.storage.missionMaxCnt;
         this.timeCnt         = 0;
         this.missionTimeLimit= this.storage.missionTimeLimit;
+
+        this.scrollX = 0;
+        this.scrollY = 0;
+
+        this.storage.coinAmount = 999;
+        this.comboCnt=0;
     },
 
     setUI : function(){
@@ -187,6 +194,7 @@ var GameLayer = cc.Layer.extend({
     },
 
     update:function(dt){
+//cc.log(this.comboCnt);
         //ページ遷移した場合はupdateは実行しない
         if(this.isMovedResult == true) return;
         //ミッションが表示中はupdateは実行しない
@@ -294,9 +302,12 @@ var GameLayer = cc.Layer.extend({
                 //    this.enemies[i].getPosition().x,
                 //    this.enemies[i].getPosition().y
                 //);
-                this.mapNode.removeChild(this.enemies[i]);
-                this.enemies.splice(i, 1);
-                this.storage.killedEnemyCnt+=1;   
+                this.enemies[i].removeBodies();
+                if(this.enemies[i].enemyBodies == 0){
+                    this.mapNode.removeChild(this.enemies[i]);
+                    this.enemies.splice(i, 1);
+                    this.storage.killedEnemyCnt+=1;
+                }
             }else{
                 this.mapNode.reorderChild(
                     this.enemies[i],
@@ -341,6 +352,14 @@ var GameLayer = cc.Layer.extend({
             if(this.enemyBullets[i].update() == false){
                 this.mapNode.removeChild(this.enemyBullets[i]);
                 this.enemyBullets.splice(i,1);
+            }
+        }
+
+        //colleague bullets
+        for(var i=0;i<this.colleagueBullets.length;i++){
+            if(this.colleagueBullets[i].update() == false){
+                //this.mapNode.removeChild(this.enemyBullets[i]);
+                //this.enemyBullets.splice(i,1);
             }
         }
 
@@ -390,7 +409,7 @@ var GameLayer = cc.Layer.extend({
     },
 
     addEnemyBullet:function(enemy){
-        var enemyBullet = new Bullet(enemy);
+        var enemyBullet = new Bullet(enemy,"fire");
         enemyBullet.attack = enemy.attack;
         enemyBullet.set_position(enemy.getPosition().x,enemy.getPosition().y - 50);
         var colleague = enemy.getNearistColleague();
@@ -404,6 +423,17 @@ var GameLayer = cc.Layer.extend({
             this.mapNode.addChild(enemyBullet,999);
             this.enemyBullets.push(enemyBullet);
         }
+    },
+
+    addColleagueBullet:function(colleague){
+        var colleagueBullet = new Bullet(colleague,"colleague");
+        colleagueBullet.attack = 10;
+        colleagueBullet.set_position(
+            colleague.getPosition().x,
+            colleague.getPosition().y - 50
+        );
+        this.mapNode.addChild(colleagueBullet,999);
+        this.colleagueBullets.push(colleagueBullet);
     },
 
     collisionAll:function(){
@@ -440,6 +470,13 @@ var GameLayer = cc.Layer.extend({
 
         //敵 & マップチップ
         collisionEnemyAndChip(this);
+
+        //仲間 &　スライド
+        var isTouched = getCollisionColleagueAndSlide(this);
+        if(isTouched >= 1){
+            this.comboCnt++;
+        }
+//cc.log(combo);
     },
 
     moveCamera:function(){
@@ -512,17 +549,28 @@ var GameLayer = cc.Layer.extend({
         var tPosX = (this.touched.x - this.cameraX) / this.mapScale;
         var tPosY = (this.touched.y - this.cameraY) / this.mapScale;
         this.targetSprite.setPosition(tPosX,tPosY);
+
+//cc.log("began");
     },
 
     onTouchesMoved:function (touches, event) {
         if(this.isToucheable() == false) return;
         this.touched = touches[0].getLocation();
+        /*
         var scrollX = this.firstTouchX - this.touched.x;
         var scrollY = this.firstTouchY - this.touched.y;
         var layerPos = this.getPosition();
+        */
+
+//cc.log("moved");
+        this.scrollX = (this.touched.x - this.cameraX) / this.mapScale;
+        this.scrollY = (this.touched.y - this.cameraY) / this.mapScale;
     },
 
     onTouchesEnded:function (touches, event) {
+        this.scrollX = 0;
+        this.scrollY = 0;
+        this.comboCnt = 0;
     },
 
     onTouchesCancelled:function (touches, event) {

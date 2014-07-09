@@ -77,7 +77,9 @@ var s_enemy_snake_head_m = base_dir + "sprite/snake_head_M.png";
 var s_enemy_chameleon    = base_dir + "sprite/chameleon_blue.png";
 var s_enemy_chameleon_m  = base_dir + "sprite/chameleon_blue_m.png";
 
+var s_promin_pipo002     = base_dir + "sprite/pipo-mapeffect009.png";
 
+var s_critical_message   = base_dir + "ui/critical_message.png";
 
 var s_attack_rolling     = base_dir + "sprite/attack_rolling.png";
 var s_break              = base_dir + "sprite/break.png";
@@ -172,5 +174,7 @@ var g_resources       = [
     s_se_attack,
     s_se_system,
     s_se_enemyOccupied,
-    s_button001_scale9
+    s_button001_scale9,
+    s_critical_message,
+    s_promin_pipo002
 ];

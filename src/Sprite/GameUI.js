@@ -215,6 +215,12 @@ var GameUI = cc.Node.extend({
         this.breakSprite.runAction(this.raBreak);
         this.addChild(this.breakSprite);
 
+
+        this.comboLabel = createLabel("000Combo",40,320/2-80,480/2);
+        this.comboLabel.setFontFillColor(cc.c4b(255,0,0,255));
+        this.addChild(this.comboLabel);
+        //this.comboLabel.setOpacity(255*0.4);
+
     },
 
     useCard001:function(){
@@ -259,6 +265,13 @@ var GameUI = cc.Node.extend({
 
     //UIのテキストをupdateする
     update:function() {
+
+        if(this.game.comboCnt >= 1){
+            this.comboLabel.setOpacity(255*1);
+            this.comboLabel.setString("+" + this.game.comboCnt + "combo!");
+        }else{
+            this.comboLabel.setOpacity(0);
+        }
 
         //エネルギーを吸収しているときに、アイコンを光らせる処理
         if(this.game.getEnergyCnt >= 1){

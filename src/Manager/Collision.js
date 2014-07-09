@@ -399,3 +399,25 @@ var collisionPlayerAndCoin = function(game){
     }
 };
 
+
+//仲間とスライドの衝突判定
+var getCollisionColleagueAndSlide = function(game){
+    var cnt    = 0;
+    var margin = 20;
+    for(var i=0;i<game.colleagues.length;i++){
+        if(
+            game.scrollX  - margin <= game.colleagues[i].getPosition().x 
+        &&  game.colleagues[i].getPosition().x <= game.scrollX + margin
+
+        &&  game.scrollY - margin <= game.colleagues[i].getPosition().y
+        &&  game.colleagues[i].getPosition().y <= game.scrollY  + margin
+
+        ){
+//cc.log("hit!!");
+            if(game.colleagues[i].doBullet() == true){
+                cnt+=1;
+            }
+        }
+    }
+    return cnt;
+};

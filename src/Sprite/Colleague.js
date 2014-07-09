@@ -75,6 +75,14 @@ var Colleague = cc.Node.extend({
         this.energySprite.setPosition(0,20);
         this.energySprite.runAction(this.energyRep);
         this.addChild(this.energySprite);
+
+        //s_critical_message
+        this.iconVoice = cc.Sprite.create(s_critical_message);
+        this.iconVoice.setPosition(0,30);
+        //this.iconVoice.setOpacity(255*0.8);
+        this.addChild(this.iconVoice,101);
+
+        this.bulletLncTime = 0;
     },
     
     remove:function() {
@@ -100,7 +108,32 @@ var Colleague = cc.Node.extend({
         }
     },
 
+    doBullet:function(){
+        if(this.bulletLncTime == 0){
+            this.bulletLncTime=1;
+            this.game.addColleagueBullet(this);
+            return true;
+        }
+        return false;
+    },
+
     update:function() {
+//cc.log(this.bulletLncTime);
+        if(this.bulletLncTime>=1){
+            this.iconVoice.setOpacity(255*0);
+            this.bulletLncTime++;
+            if(this.bulletLncTime>=30*8){
+                this.bulletLncTime = 0;
+            }
+        }else{
+            this.iconVoice.setOpacity(255*1);
+        }
+        /*
+        if(this.bulletLncTime >= 30 * 10){
+            this.bulletLncTime = 0;
+            this.game.addColleagueBullet(this);
+        }*/
+
 
         if(this.isDamageOn == true){
             this.addFlashCnt();
